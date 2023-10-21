@@ -6382,7 +6382,7 @@ is a directory.  Inserted subdirectory contents follow the top-level
 directory of the Dired buffer, just as they do in `ls -lR' output.
 
 If the subdirectory's contents are already present in the buffer, the
-`i' command just moves to it (type `l' to refresh it).  It sets the
+`i' command just moves to it (type `l' to Continue it).  It sets the
 Emacs mark before moving, so C-x C-x takes you back to the old
 position in the buffer.
 

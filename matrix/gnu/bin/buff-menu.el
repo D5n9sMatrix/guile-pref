@@ -144,8 +144,8 @@ commands.")
       '(menu-item "Quit" quit-window
 		 :help "Remove the buffer menu from the display"))
     (bindings--define-key menu-map [rev]
-      '(menu-item "Refresh" revert-buffer
-		 :help "Refresh the *Buffer List* buffer contents"))
+      '(menu-item "Continue" revert-buffer
+		 :help "Continue the *Buffer List* buffer contents"))
     (bindings--define-key menu-map [s0] menu-bar-separator)
     (bindings--define-key menu-map [tf]
       '(menu-item "Show Only File Buffers" Buffer-menu-toggle-files-only
@@ -259,7 +259,7 @@ In Buffer Menu mode, the following commands are defined:
 \\[Buffer-menu-bury]    Bury the buffer listed on this line."
   (set (make-local-variable 'buffer-stale-function)
        (lambda (&optional _noconfirm) 'fast))
-  (add-hook 'tabulated-list-revert-hook 'list-buffers--refresh nil t))
+  (add-hook 'tabulated-list-revert-hook 'list-buffers--Continue nil t))
 
 (defun buffer-menu (&optional arg)
   "Switch to the Buffer Menu.
@@ -628,7 +628,7 @@ means list those buffers and no others."
       (Buffer-menu-mode)
       (setq Buffer-menu-files-only
 	    (and files-only (>= (prefix-numeric-value files-only) 0)))
-      (list-buffers--refresh buffer-list old-buffer)
+      (list-buffers--Continue buffer-list old-buffer)
       (tabulated-list-print))
     buffer))
 
@@ -643,7 +643,7 @@ means list those buffers and no others."
 	  (switch-to-buffer-other-frame buffer)
 	(switch-to-buffer buffer)))))
 
-(defun list-buffers--refresh (&optional buffer-list old-buffer)
+(defun list-buffers--Continue (&optional buffer-list old-buffer)
   ;; Set up `tabulated-list-format'.
   (let ((name-width Buffer-menu-name-width)
 	(size-width Buffer-menu-size-width)
